@@ -188,9 +188,19 @@ mp.events.add('exitComp', function(player){
 });
 
 mp.events.add('setMainEvent', (toggle) => {
+   try{
+   if (!Number(scaleform))
+      scaleform = mp.game.graphics.requestScaleformMovie('HORSE_RACING_CONSOLE');
+
+   if (!Number(scaleform))
+      return;
+
+
    mp.game.graphics.pushScaleformMovieFunction(scaleform, 'SET_MAIN_EVENT_IN_PROGRESS');
          mp.game.graphics.pushScaleformMovieFunctionParameterBool(parseBool(toggle));
          mp.game.graphics.popScaleformMovieFunctionVoid();
+   }
+   catch{}
 });
 
 mp.events.add('updateBalance', (count) => {
